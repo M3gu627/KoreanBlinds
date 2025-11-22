@@ -1,0 +1,213 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans KR', 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f8f8;
+}
+
+/* Header Styles */
+header {
+    background: linear-gradient(135deg, #c73e1d 0%, #8b2500 100%);
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.logo p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-top: 0.25rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+nav a:hover,
+nav a.active {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23d4a574" width="1200" height="600"/><path fill="%23c73e1d" d="M0 300L50 325L100 300L150 325L200 300L250 325L300 300L350 325L400 300L450 325L500 300L550 325L600 300L650 325L700 300L750 325L800 300L850 325L900 300L950 325L1000 300L1050 325L1100 300L1150 325L1200 300V600H0V300Z"/></svg>');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 8rem 2rem;
+}
+
+.hero h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.hero p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.btn {
+    display: inline-block;
+    background: #c73e1d;
+    color: white;
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(199,62,29,0.4);
+}
+
+.btn:hover {
+    background: #8b2500;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(199,62,29,0.6);
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+/* Section Styles */
+section {
+    margin-bottom: 4rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+    color: #c73e1d;
+    margin-bottom: 1rem;
+    text-align: center;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #c73e1d, #d4a574);
+}
+
+/* Features Grid */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+    border-top: 4px solid #c73e1d;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.feature-card h3 {
+    color: #c73e1d;
+    margin: 1rem 0;
+    font-size: 1.5rem;
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Korean Pattern Decorations */
+.korean-pattern {
+    background-image: 
+        repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(199,62,29,0.05) 10px, rgba(199,62,29,0.05) 20px);
+    padding: 3rem 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .hero h2 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .features {
+        grid-template-columns: 1fr;
+    }
+}
