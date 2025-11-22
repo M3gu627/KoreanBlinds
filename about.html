@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - LEI-LO Korean Blinds</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .about-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+        }
+        
+        .about-section h3 {
+            color: #c73e1d;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        
+        .timeline {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .timeline-item {
+            display: flex;
+            gap: 2rem;
+            align-items: start;
+        }
+        
+        .timeline-year {
+            background: #c73e1d;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            min-width: 100px;
+            text-align: center;
+        }
+        
+        .timeline-content {
+            flex: 1;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .value-item {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #fff 0%, #f8f8f8 100%);
+            border-radius: 10px;
+            border-left: 4px solid #c73e1d;
+        }
+        
+        .value-item h4 {
+            color: #c73e1d;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <h1>LEI-LO</h1>
+                <p>한국식 블라인드 전문점</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h2>About LEI-LO</h2>
+        <p>Preserving Korean Heritage Through Excellence</p>
+    </section>
+
+    <div class="container">
+        <div class="about-section">
+            <h3>Our Story</h3>
+            <p>
+                Founded with a passion for Korean traditional craftsmanship, LEI-LO has been bringing the timeless 
+                beauty of Korean design into modern homes and offices. Our name represents the harmony between light 
+                (Lei) and flow (Lo), reflecting our philosophy of creating spaces that breathe with natural elegance.
+            </p>
+            <p>
+                We believe that window treatments are more than just functional items – they are expressions of 
+                cultural identity and personal style. Each blind we create carries the essence of Korean heritage, 
+                meticulously crafted to meet contemporary needs while honoring traditional techniques.
+            </p>
+        </div>
+
+        <div class="about-section">
+            <h3>Our Journey</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2015</div>
+                    <div class="timeline-content">
+                        <h4>The Beginning</h4>
+                        <p>LEI-LO was established with a vision to introduce authentic Korean blinds to the market</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2018</div>
+                    <div class="timeline-content">
+                        <h4>Expansion</h4>
+                        <p>Opened our first showroom and partnered with master craftsmen from Korea</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2021</div>
+                    <div class="timeline-content">
+                        <h4>Innovation</h4>
+                        <p>Launched our custom design service and eco-friendly product line</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2025</div>
+                    <div class="timeline-content">
+                        <h4>Today</h4>
+                        <p>Serving customers nationwide with premium Korean blinds and exceptional service</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-section">
+            <h3>Our Values</h3>
+            <div class="values-grid">
+                <div class="value-item">
+                    <h4>Quality</h4>
+                    <p>We never compromise on the quality of materials and craftsmanship</p>
+                </div>
+                <div class="value-item">
+                    <h4>Authenticity</h4>
+                    <p>Every design stays true to Korean traditional aesthetics</p>
+                </div>
+                <div class="value-item">
+                    <h4>Innovation</h4>
+                    <p>Blending heritage with modern technology and design</p>
+                </div>
+                <div class="value-item">
+                    <h4>Sustainability</h4>
+                    <p>Committed to eco-friendly practices and materials</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 LEI-LO Korean Blinds. All rights reserved.</p>
+            <p>한국 전통의 아름다움을 담다</p>
+        </div>
+    </footer>
+</body>
+</html>
