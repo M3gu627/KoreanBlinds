@@ -1,8 +1,11 @@
 /* ==========================================
    LEI-LO - Premium Korean Blinds Website
-   Main JavaScript File - FULLY FIXED & CLEAN
+   Main JavaScript File - WITH SCROLL-TRIGGERED SAKURA
    ========================================== */
 
+// ==========================================
+// Sakura Petals - Enhanced with Scroll Trigger
+// ==========================================
 function createSakuraPetals() {
     const container = document.getElementById('petals');
     if (!container) return;
@@ -21,8 +24,59 @@ function createSakuraPetals() {
     }
 }
 
+// Scroll-triggered Sakura Burst
+let lastScrollY = 0;
+let ticking = false;
+
+function triggerSakuraBurst() {
+    const petalsContainer = document.getElementById('petals');
+    if (!petalsContainer) return;
+    
+    const burstCount = 5; // Number of petals per burst
+    
+    for (let i = 0; i < burstCount; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'petal petal-burst';
+        
+        // Random horizontal position
+        petal.style.left = Math.random() * 100 + '%';
+        
+        // Random animation duration (2-4 seconds)
+        petal.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        
+        // Random horizontal drift
+        const drift = (Math.random() - 0.5) * 200; // -100 to 100
+        petal.style.setProperty('--drift', drift);
+        
+        // Higher opacity for burst petals
+        petal.style.opacity = '0';
+        
+        petalsContainer.appendChild(petal);
+        
+        // Remove petal after animation completes
+        setTimeout(() => {
+            petal.remove();
+        }, 4000);
+    }
+}
+
+function onScroll() {
+    lastScrollY = window.scrollY;
+    
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            // Trigger burst on scroll (30% chance per scroll frame)
+            if (Math.random() > 0.7) {
+                triggerSakuraBurst();
+            }
+            ticking = false;
+        });
+        ticking = true;
+    }
+}
+
 // ==========================================
-// Hero Carousel Class - Already Perfect
+// Hero Carousel Class
 // ==========================================
 class HeroCarousel {
     constructor() {
@@ -137,7 +191,7 @@ class HeroCarousel {
 }
 
 // ==========================================
-// Navigation Functions - FIXED MOBILE MENU
+// Navigation Functions
 // ==========================================
 function initNavigation() {
     const navbar = document.getElementById('navbar');
@@ -181,7 +235,7 @@ function initNavigation() {
     // Mobile menu toggle with X animation
     mobileToggle.addEventListener('click', (e) => {
         e.stopPropagation();
-        nav25LinksContainer.classList.toggle('mobile-active');
+        navLinksContainer.classList.toggle('mobile-active');
         mobileToggle.classList.toggle('active');
     });
 
@@ -195,7 +249,7 @@ function initNavigation() {
 }
 
 // ==========================================
-// Scroll Animations & Section Observer (unchanged & perfect)
+// Scroll Animations & Section Observer
 // ==========================================
 function initScrollAnimations() {
     const elements = document.querySelectorAll('.scroll-animate');
@@ -245,7 +299,10 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
     initSectionObserver();
 
-    console.log('LEI-LO Website Initialized Successfully');
+    // Add scroll listener for sakura bursts
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    console.log('LEI-LO Website Initialized Successfully ✨');
 });
 
 window.addEventListener('beforeunload', () => {
