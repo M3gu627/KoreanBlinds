@@ -1,54 +1,67 @@
 /* ==========================================
    LEI-LO - Premium Korean Blinds Website
-   Main JavaScript File - WITH SCROLL-TRIGGERED SAKURA
+   Main JavaScript File - WITH GIF SAKURA SCROLL TRIGGER
    ========================================== */
 
 // ==========================================
-// Sakura Petals - Enhanced with Scroll Trigger
+// Sakura Petals - Using GIF with Scroll Trigger
 // ==========================================
 function createSakuraPetals() {
     const container = document.getElementById('petals');
     if (!container) return;
 
-    const petalCount = 30;
+    const petalCount = 20; // Reduced since GIFs are larger
 
     for (let i = 0; i < petalCount; i++) {
-        const petal = document.createElement('div');
-        petal.className = 'petal';
-
+        const petal = document.createElement('img');
+        petal.className = 'petal petal-gif';
+        petal.src = 'sakura.gif'; // Your GIF file
+        
         petal.style.left = Math.random() * 100 + '%';
         petal.style.animationDuration = (Math.random() * 15 + 10) + 's';
         petal.style.animationDelay = Math.random() * 10 + 's';
+        
+        // Random size for variety
+        const size = Math.random() * 30 + 40; // 40-70px
+        petal.style.width = size + 'px';
+        petal.style.height = 'auto';
 
         container.appendChild(petal);
     }
 }
 
-// Scroll-triggered Sakura Burst
+// Scroll-triggered Sakura Burst with GIF
 let lastScrollY = 0;
 let ticking = false;
+let scrollVelocity = 0;
 
 function triggerSakuraBurst() {
     const petalsContainer = document.getElementById('petals');
     if (!petalsContainer) return;
     
-    const burstCount = 5; // Number of petals per burst
+    const burstCount = 3; // Less GIFs per burst (they're bigger)
     
     for (let i = 0; i < burstCount; i++) {
-        const petal = document.createElement('div');
-        petal.className = 'petal petal-burst';
+        const petal = document.createElement('img');
+        petal.className = 'petal petal-gif petal-burst';
+        petal.src = 'sakura.gif'; // Your GIF file
         
         // Random horizontal position
         petal.style.left = Math.random() * 100 + '%';
         
-        // Random animation duration (2-4 seconds)
-        petal.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        // Random animation duration (3-5 seconds)
+        petal.style.animationDuration = (Math.random() * 2 + 3) + 's';
         
         // Random horizontal drift
         const drift = (Math.random() - 0.5) * 200; // -100 to 100
         petal.style.setProperty('--drift', drift);
         
-        // Higher opacity for burst petals
+        // Random size
+        const size = Math.random() * 25 + 50; // 50-75px
+        petal.style.width = size + 'px';
+        petal.style.height = 'auto';
+        
+        // Start invisible
         petal.style.opacity = '0';
         
         petalsContainer.appendChild(petal);
@@ -56,17 +69,22 @@ function triggerSakuraBurst() {
         // Remove petal after animation completes
         setTimeout(() => {
             petal.remove();
-        }, 4000);
+        }, 5000);
     }
 }
 
 function onScroll() {
-    lastScrollY = window.scrollY;
+    const currentScrollY = window.scrollY;
+    scrollVelocity = Math.abs(currentScrollY - lastScrollY);
+    lastScrollY = currentScrollY;
     
     if (!ticking) {
         window.requestAnimationFrame(() => {
-            // Trigger burst on scroll (30% chance per scroll frame)
-            if (Math.random() > 0.7) {
+            // Trigger burst based on scroll speed
+            // Faster scrolling = more likely to trigger
+            const threshold = scrollVelocity > 5 ? 0.6 : 0.8;
+            
+            if (Math.random() > threshold) {
                 triggerSakuraBurst();
             }
             ticking = false;
@@ -291,7 +309,7 @@ function initSectionObserver() {
 let carouselInstance = null;
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('LEI-LO Website Loading...');
+    console.log('🌸 LEI-LO Website Loading...');
 
     createSakuraPetals();
     carouselInstance = new HeroCarousel();
@@ -302,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add scroll listener for sakura bursts
     window.addEventListener('scroll', onScroll, { passive: true });
 
-    console.log('LEI-LO Website Initialized Successfully ✨');
+    console.log('✨ LEI-LO Website Initialized - Scroll to see sakura magic!');
 });
 
 window.addEventListener('beforeunload', () => {
