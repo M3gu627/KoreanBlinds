@@ -51,7 +51,7 @@ body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: var(
 .cta-button { display: inline-block; padding: 1rem 3rem; background: white; color: var(--primary-black); text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
 .cta-button:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
 
-/* Carousel Controls */
+/* Carousel Controls (Hero) */
 .carousel-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.8); border: none; width: 50px; height: 50px; border-radius: 50%; font-size: 2rem; color: var(--primary-black); cursor: pointer; z-index: 10; transition: all 0.3s ease; }
 .carousel-arrow:hover { background: white; transform: translateY(-50%) scale(1.1); }
 .carousel-arrow.prev { left: 2rem; }
@@ -75,17 +75,50 @@ body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: var(
 .feature-icon { font-size: 3.8rem; margin-bottom: 1.5rem; }
 .feature-item h3 { font-size: 1.5rem; color: var(--primary-black); margin-bottom: 1rem; }
 
-/* Products */
-.staggered-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; }
-.staggered-1 { margin-top: 0; transform: rotate(2deg); }
-.staggered-2 { margin-top: 40px; transform: rotate(-3deg); }
-.staggered-3 { margin-top: 20px; transform: rotate(1deg); }
-.product-card { background: #f0f8ff; border: 8px solid white; border-radius: 15px; width: 280px; overflow: hidden; box-shadow: 0 12px 36px rgba(255,182,193,0.25); transition: all 0.3s ease; cursor: default; }
-.product-card:hover { transform: translateY(-10px) rotate(0deg) !important; box-shadow: 0 20px 50px rgba(255,182,193,0.4); }
+/* Products - FIXED STATIC 5-COLUMN GRID */
+.products-grid { 
+    display: grid;
+    /* Force 5 columns, allowing them to take equal space */
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 1.5rem; 
+    margin-top: 3rem;
+    padding: 0;
+    overflow-x: hidden; /* Ensure no horizontal scrollbar */
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.product-card { 
+    position: relative;
+    background: #f0f8ff; 
+    border: 8px solid white; 
+    border-radius: 15px; 
+    /* Remove fixed width and min-width to allow grid to size it */
+    width: auto;
+    min-width: 0;
+    flex-shrink: 0;
+    overflow: hidden; 
+    box-shadow: 0 12px 36px rgba(255,182,193,0.25); 
+    transition: all 0.3s ease; 
+    cursor: default; 
+    /* Remove staggered/rotation transforms */
+    transform: none !important; 
+    margin-top: 0 !important;
+}
+
+.product-card:hover { transform: translateY(-10px) !important; box-shadow: 0 20px 50px rgba(255,182,193,0.4); }
 .product-image { height: 280px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1rem; background: linear-gradient(135deg, #fff0f5, #f0f8ff); }
 .flower-icon { width: 120px; height: auto; margin-bottom: 1rem; border-radius: 50%; box-shadow: 0 4px 12px rgba(255,105,180,0.2); }
 .product-label { font-family: Georgia, serif; font-size: 1.8rem; color: var(--primary-black); font-weight: 600; }
-.product-info h3 { font-size: 1.3rem; color: var(--primary-black); margin: 1rem 0 0.5rem; text-align: center; }
+.product-info { padding: 0.5rem 1rem 1.5rem; position: relative; }
+.product-info h3 { font-size: 1.3rem; color: var(--primary-black); margin: 0.5rem 0 0.2rem; text-align: center; }
+.product-info p { font-size: 0.95rem; text-align: center; color: #555; margin-bottom: 0.5rem; }
+
+/* Removed .products-carousel-wrapper and .products-grid-scroll styles */
+/* Removed .product-arrow styles */
+/* Removed .staggered-grid, .staggered-1, .staggered-2, .staggered-3 styles */
+
 
 /* Projects Grid */
 .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2.5rem; margin-top: 3rem; }
@@ -121,13 +154,24 @@ body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: var(
 .scroll-animate.visible { opacity: 1; transform: translateY(0); }
 
 /* Responsive */
+@media (max-width: 1200px) {
+    /* Switch to auto-fit grid for product cards when space is tight */
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+    }
+}
+
 @media (max-width: 768px) {
     .nav-links { position: fixed; top: 70px; left: -100%; flex-direction: column; background: white; width: 100%; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: left 0.3s ease; }
     .nav-links.mobile-active { left: 0; }
     .mobile-menu-toggle { display: flex; }
     .hero-title { font-size: 3rem; }
     .contact-content, .form-row { grid-template-columns: 1fr; }
-    .staggered-1, .staggered-2, .staggered-3 { margin-top: 0 !important; transform: none !important; }
+    /* On small screens, use 2 columns for products, or 1 if needed */
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
     .contact-form { padding: 2rem; }
 }
 
@@ -162,80 +206,4 @@ body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: var(
     .nav-link { padding: 1.2rem 0; font-size: 1.1rem; }
     .cta-button, .submit-btn { min-height: 54px; padding: 1rem 2rem !important; }
     .carousel-arrow { width: 50px; height: 50px; }
-}
-/* ==========================================
-   SCROLL-TRIGGERED GIF SAKURA ANIMATIONS
-   Add/Replace in your styles.css
-   ========================================== */
-
-/* Base petal styles for GIF images */
-.petal-gif {
-    position: absolute;
-    top: -100px;
-    width: 50px;
-    height: auto;
-    opacity: 0.7;
-    animation: fall linear infinite;
-    pointer-events: none;
-    object-fit: contain;
-}
-
-/* Standard falling animation */
-@keyframes fall {
-    0% {
-        transform: translateY(-100px) rotate(0deg);
-        opacity: 0.7;
-    }
-    100% {
-        transform: translateY(100vh) rotate(360deg);
-        opacity: 0;
-    }
-}
-
-/* Burst petals - scroll triggered */
-.petal-burst {
-    animation: burst-fall 4s ease-out forwards !important;
-    width: 60px !important;
-    opacity: 0 !important;
-    filter: drop-shadow(0 0 8px rgba(255, 183, 197, 0.6));
-}
-
-@keyframes burst-fall {
-    0% {
-        transform: translateY(0) translateX(0) rotate(0deg) scale(1.2);
-        opacity: 0;
-    }
-    10% {
-        opacity: 0.9;
-    }
-    100% {
-        transform: translateY(100vh) translateX(var(--drift, 0px)) rotate(720deg) scale(0.6);
-        opacity: 0;
-    }
-}
-
-/* Size variations for natural look */
-.petal-gif:nth-child(3n) {
-    width: 40px;
-}
-
-.petal-gif:nth-child(5n) {
-    width: 70px;
-}
-
-/* Optional: Slow down on section hover */
-.section:hover .petal-gif {
-    animation-duration: 20s !important;
-}
-
-/* Make sure petals are behind content but visible */
-.sakura-petals {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-    overflow: hidden;
 }
